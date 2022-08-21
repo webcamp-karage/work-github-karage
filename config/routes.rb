@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
- namespace :admin do
+ #namespace :admin do
    resources :sessions, :homes, :items, :genres, :customers, :orders, :order_details
  end
 
