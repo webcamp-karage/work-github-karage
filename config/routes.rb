@@ -1,18 +1,15 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
 
-=======
-  
- namespace :admin do 
+ namespace :admin do
    resources :sessions, :homes, :items, :genres, :customers, :orders, :order_details
  end
-  
-  
+
+
   namespace :public do
     resources :homes, :items, :registrations, :sessions, :customers, :cart_itmes, :orders, :addresses
-    
-  
->>>>>>> origin/develop
+
+  end
+
   devise_for :customers
   devise_for :admins
   devise_for :users
