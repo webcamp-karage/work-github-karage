@@ -1,13 +1,22 @@
 Rails.application.routes.draw do
-
  namespace :admin do
-   resources :sessions, :homes, :items, :genres, :customers, :orders, :order_details
+   resources :homes
+   resources :items
+   resources:genres
+   resources:customers
+   resources:orders
+   resources:order_details
  end
 
 
   namespace :public do
-    resources :homes, :items, :registrations, :sessions, :customers, :cart_itmes, :orders, :addresses
- end
+    resources :homes
+    resources:items
+    resources:customers
+    resources:cart_itmes
+    resources:orders
+    resources:addresses
+  end
 
   devise_for :customers
   devise_for :admins
