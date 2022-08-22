@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
-
- #namespace :admin do
-   resources :sessions, :homes, :items, :genres, :customers, :orders, :order_details
-=======
  namespace :admin do
    resources :homes
    resources :items
@@ -11,22 +6,16 @@ Rails.application.routes.draw do
    resources:customers
    resources:orders
    resources:order_details
->>>>>>> origin/develop
  end
 
 
   namespace :public do
-<<<<<<< HEAD
-    resources :homes, :items, :registrations, :sessions, :customers, :cart_itmes, :orders, :addresses
-
-=======
     resources :homes
     resources:items
     resources:customers
     resources:cart_itmes
     resources:orders
     resources:addresses
->>>>>>> origin/develop
   end
 
   devise_for :customers

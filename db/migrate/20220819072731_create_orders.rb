@@ -1,7 +1,6 @@
 class CreateOrders < ActiveRecord::Migration[6.1]
   def change
     create_table :orders do |t|
-      t.integer :id
       t.integer:customer_id
       t.string:postal_code
       t.string:adress
@@ -10,8 +9,6 @@ class CreateOrders < ActiveRecord::Migration[6.1]
       t.integer:total_payment
       t.integer:payment_method
       t.integer:status
-      t.datetime:created_at
-      t.datetime:updated_at
 
 
       t.timestamps
