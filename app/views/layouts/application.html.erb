@@ -12,6 +12,64 @@
   </head>
 
   <body>
-    <%= yield %>
+
+
+
+  <header class="shadow-sm mb-5" >
+        <nav class="navbar expand-lg navbar-dark" style="background-color: #BBBBBB;">
+
+          <div class="container">
+            <% if admin_signed_in? %>
+              <%= link_to admin_root_path do %>
+                <%= image_tag "logo.png", size: "300x76" %>
+              <% end %>
+              <ul class="nav justify-content-end">
+                <li class="nav-item btn"><%= link_to "商品一覧", admin_items_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item btn"><%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item btn"><%= link_to "注文履歴一覧", admin_root_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item btn"><%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item btn"><%= link_to "ログアウト",  destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %></li>
+              </ul>
+            <% elsif customer_signed_in? %>
+              <%= link_to root_path do %>
+                <%= image_tag "logo.png", size: "300x76" %>
+              <% end %>
+              <ul class="nav justify-content-end">
+                <li class="nav-item btn"><%= link_to "マイページ", public_customer_path(current_customer.id), class: 'nav-link text-dark' %></li>
+                <li class="nav-item btn"><%= link_to "商品一覧", public_items_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item btn"><%= link_to "カート", public_cart_items_path(current_customer.id), class: 'nav-link text-dark' %></li>
+                <li class="nav-item btn"><%= link_to "ログアウト",  destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %></li>
+              </ul>
+            <% else %>
+              <%= link_to root_path do %>
+                <%= image_tag "logo.png", size: "300x76" %>
+              <% end %>
+              <ul class="nav justify-content-end">
+                <li class="nav-item btn"><%= link_to "About", public_homes_about_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item btn"><%= link_to "商品一覧", public_items_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item btn"><%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item btn"><%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark' %></li>
+              </ul>
+            <% end %>
+          </div>
+        </nav>
+      </header>
+        <main class="body-by">
+          <%= yield %>
+
+        </main>
+      <footer class="text-dark pt-5 pb-3">
+        <div class='container'>
+    	    <div class='row'>
+      	    <div class='mx-auto'>
+                <a href="#" class="mx-1 text-dark"><i class="fab fa-twitter fa-lg"></i></a>
+                <a href="#" class="mx-5 text-dark"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="#" class="mx-1 text-dark"><i class="fab fa-facebook-square"></i></a>
+                <a href="#" class="mx-5 text-dark"><i class="far fa-envelope fa-lg"></i></a>
+                <p class="text-center">からあげ</p>
+              </div>
+           </div>
+         </div>
+      </footer>
   </body>
 </html>
