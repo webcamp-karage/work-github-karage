@@ -1,2 +1,80 @@
-<h1>Public::Orders#new</h1>
-<p>Find me in app/views/public/orders/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="mainContents col-sm-12 col-sm-push-4 col-md-12 col-md-push-4">
+      <div class="row">
+      </div>
+
+      <h4 class="subtitle mx-auto">お届け先とお支払い情報入力</h4>
+
+      <div class="container form-contents">
+        <h6 class="subtitle mx-auto">配送情報</h6>
+        <%= form_with model: @order, url: public_orders_confirm_path, local: true do |f| %>
+          <%= render  "public/addresses/error", resource: @order %>
+          <div class="address-list">
+            <div class="address-select">
+              <%= f.radio_button :address_number, 1, required: true%>
+              <%= f.label :address_number_1, "ご自身の住所" %>
+            </div>
+
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th>宛名</th>
+                  <td><%= current_customer.first_name  %><%= current_customer.last_name %></td>
+                </tr>
+                <tr>
+                  <th>住所</th>
+                  <td>〒<%= current_customer.postal_code %><%= current_customer.address %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="address-list">
+            <div class="address-select">
+              <%= f.radio_button :address_number, 2 ,required: true%>
+              <%= f.label :address_number_2, "登録済住所から選択" %>
+            </div>
+            &emsp; <%= f.select :address_id, options_from_collection_for_select(@addresses.all, :id, :full_address) %>
+          </div>
+
+          <div class="address-list">
+            <div class="address-select">
+              <%= f.radio_button :address_number, 3 ,required: true%>
+              <%= f.label :address_number_3, "新しいお届け先" %>
+            </div>
+            <table>
+              <tr class="col-md-6 mb-3">
+                <td class="col-2"><%= f.label :"郵便番号(ハイフンなし)", class:"form-label" %></td>
+                <td class="col-4"><%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class:"form-control" %></td>
+              </tr>
+              <tr class="col-md-8 mb-4">
+                <td class="col-2"><%= f.label :"住所", class:"form-label" %></td>
+                <td class="col-4"><%= f.text_field :address, autofocus: true, autocomplete: "postal_code", class:"form-control" %></td>
+              </tr>
+              <tr class="col-md-8 mb-4">
+                <td class="col-2"><%= f.label :"宛名", class:"form-label" %></td>
+                <td class="col-4"><%= f.text_field :name, autofocus: true, autocomplete: "postal_code", class:"form-control" %></td>
+              </tr>
+            </table>
+          </div>
+
+          <h6 class="subtitle mx-auto">お支払い方法</h6>
+          <div class="pay-list">
+            <div class="pay-select">
+              <%= f.radio_button :payment_method, Order.payment_methods.key(0) ,required: true%>
+              <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
+            </div>
+            <div class="pay-select">
+              <%= f.radio_button :payment_method, Order.payment_methods.key(1) ,required: true%>
+              <%= f.label :payment_method, Order.payment_methods_i18n[:transfer]%>
+            </div>
+          </div>
+
+          <div class= "row justify-content-center">
+            <%= f.submit "確認画面へ進む", class: 'form-button' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
