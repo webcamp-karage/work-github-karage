@@ -1,2 +1,38 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class='container-fluid'>
+  <div class='row'>
+    <div class='col-md-2'>
+      <%= render 'public/homes/genre_index', genres: @genres %>
+
+  </div>
+  <div class="col-md-10">
+      <div class="item-info row">
+        <div class="col-xl-6">
+          
+            <% if @item.image.attached? %>
+              <%= image_tag @item.image, size: "400x300" %>
+            <% else %>
+              <%= image_tag 'no_image', size: "400x300" %>
+            <% end %>
+          
+        </div>
+        <div class="col-xl-6">
+          <h3><br>
+            <%= @item.name %>
+          </h3>
+          <div>
+            <p><%= @item.introduction %></p>
+          </div>
+          <div class="item-info-price"><h4>¥<%= ((@item.price * 110 / 100 ).to_s(:delimited)) %><span> (税込) </span></h4> </div>
+          <div class="item-count-form">
+            <%= form_with model: @cart_item, url: public_cart_items_path do |f| %>
+              <%= f.hidden_field :item_id, :value => @item.id %>
+              <span id="item-count">個数</span>
+              <%= f.select :quantity, (1..50), class: "item-count-select" %>
+              <%= f.submit "カートに入れる", class: "btn btn-outline-primary" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

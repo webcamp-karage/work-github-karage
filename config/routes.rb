@@ -15,7 +15,8 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :homes
-    resources:items
+    resources:items ,only: [:index, :show]
+    resources:cart_items ,only: [:index, :update, :create, :destroy]
     get 'customers/my_page' => 'customers#show', as: "customer"
     get 'customers/information/edit' => 'customers#edit', as: "customers_edit"
     patch 'customers/information' => 'customers#update'
@@ -23,7 +24,6 @@ Rails.application.routes.draw do
     patch 'customers/withdraw' => 'customers#withdraw'
     post 'orders/confirm', to: 'orders#confirm'
     get "orders/complete" => "orders#complete", as: "complete"
-    resources:cart_itmes
     resources:orders
     resources:addresses, only: [:index, :create, :edit, :update, :destroy]
   end
