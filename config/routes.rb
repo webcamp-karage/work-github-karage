@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources:customers
     resources:cart_itmes
     resources:orders
-    resources:addresses
+    resources:addresses, only: [:index, :create, :edit, :update, :destroy]
   end
 
   devise_for :customers
