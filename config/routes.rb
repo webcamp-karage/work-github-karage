@@ -11,9 +11,9 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :homes
-    resources:items
+    resources:items ,only: [:index, :show]
     resources:customers
-    resources:cart_itmes
+    resources:cart_items ,only: [:index, :update, :create, :destroy]
     resources:orders
     resources:addresses
   end
