@@ -31,7 +31,7 @@
                 ¥<%= cart_itme.subtotal %>
               </td>
               <td>
-                <%= link_to "削除する", public_cart_items_path(cart_item.id), method: ;DELETE, class: "btn btn-outline-banger" %>
+                <%= link_to "削除する", public_cart_item_path(cart_item.id), method: :DELETE, class: "btn btn-outline-banger" %>
               </td>
             </tr>
             <% end %>
@@ -40,7 +40,7 @@
     </div>
   </div>
    <span>
-     <%= link_to "買い物を続ける", root_path, class: "btn-outline-info", date: {"turbolinks" => false} %> <%=link_to "カートを空にする", public_cart_items_destroy_all_path, method: :delete, class: "pull-right btn btn-outline-warning" %>
+     <%= link_to "買い物を続ける", root_path, class: "btn btn-outline-info", date: {"turbolinks" => false} %> <%=link_to "カートを空にする", public_cart_items_destroy_all_path, method: :delete, class: "pull-right btn btn-outline-warning" %>
   </span><br>
   <div class="row">
     <div class="col-md-6"><br>
