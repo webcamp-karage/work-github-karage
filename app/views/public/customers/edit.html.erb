@@ -1,2 +1,54 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col m-10">
+      <p id="notice"></p>
+        <h3><strong>会員情報編集</strong></h3>
+          <%= form_with model: @customer, url: public_customers_information_path(@customer) do |f| %>
+
+              <table class="row table">
+
+                <tr>
+                  <th><%= f.label :氏名 %></th>
+                  <th>    <%= f.text_field :first_name, class:"form-control" %></th>
+                  <th><%= f.text_field :last_name, class:"form-control" %></th>
+　　　　　　　　</tr>
+
+                <tr>
+                  <th><%= f.label :フリガナ %></th>
+                  <th><%= f.text_field :first_name_kana, class:"form-control" %></th>
+                  <th><%= f.text_field :last_name_kana, class:"form-control" %><br></th>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th><%= f.label :郵便番号 %></th>
+                  <td><%= f.text_field :postal_code, class:"form-control" %></td><th></th>
+                </tr>
+
+                <tr>
+                  <th><%= f.label :住所 %></th>
+                  <td><%= f.text_field :address, class:"form-control" %></td><th></th>
+                </tr>
+
+                <tr>
+                  <th><%= f.label :電話番号 %></th>
+                  <td><%= f.text_field :telephone_number, class:"form-control" %></td><th></th>
+                </tr>
+
+                <tr>
+                  <th><%= f.label :メールアドレス %></th>
+                  <td><%= f.text_field :email , class:"form-control"%></td><th></th>
+                </tr>
+
+                <div class="form-group">
+                    <th><input type="submit" name="commit" value="編集内容を保存" class="btn btn-outline-dark" data-disable-with="Update Genre"></th><td></td>
+                    <th><%= link_to public_customers_unsubscribe_path(current_customer) do %>
+                         <button type="button" class="btn btn-outline-dark">退会する</button>
+                    <% end %></th>
+                </div>
+              </table>
+          <% end %>
+
+    </div>
+  </div>
+</div>
