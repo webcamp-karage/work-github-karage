@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
- 
+
  root :to => "public/homes#top"
  get "homes/about"=>"public/homes#about", as:"about"
-  
+
  namespace :admin do
    resources :homes
    resources :items
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :homes
     resources:items ,only: [:index, :show]
     resources:cart_items ,only: [:index, :update, :create, :destroy]
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     get 'customers/my_page' => 'customers#show', as: "customer"
     get 'customers/information/edit' => 'customers#edit', as: "customers_edit"
     patch 'customers/information' => 'customers#update'
