@@ -4,10 +4,11 @@ Rails.application.routes.draw do
  get "homes/about"=>"public/homes#about", as:"about"
 
  namespace :admin do
+   root to: "homes#top"
    resources :homes
    resources :items
    resources:genres
-   resources:customers
+   resources:customers, only: [:index, :show, :edit, :update]
    resources:orders
    resources:order_details
  end
