@@ -84,6 +84,9 @@ class Public::OrdersController < ApplicationController
   def index
     @genres = Genre.all
     @orders = current_customer.orders.all
+    
+
+
     # ("#{sort_column} #{sort_direction}")
   end
 
@@ -93,11 +96,19 @@ class Public::OrdersController < ApplicationController
     @total = @order_details.inject(0) { |sum, item| sum + item.subtotal }
     @genres = Genre.all
   end
+  
+  
 
   private
   def order_params
     params.require(:order).permit(:payment_method, :postcode, :address, :name, :shipping_cost, :status)
   end
+  
+  def delimiter_num(price) 
+    "#{price.to_s(:delimited, delimiter: ",")}" 
+  end
+
+  helper_method :delimiter_num
 
   # def order_details
   #   params.require(:order_details).permit(:order_id, :item_id, :price, :amount, :making_status)
