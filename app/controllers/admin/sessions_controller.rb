@@ -1,6 +1,17 @@
 # frozen_string_literal: true
 
 class Admin::SessionsController < Devise::SessionsController
+
+  # def admin_check
+  #   if user_signed_in? && current_user.role == "adamin"
+  #       riderect_to new_admin_product_path
+  #   else
+  #       render action: :edit
+  #       flash[:alert] = "管理者画面です"
+  #   end
+  # end
+
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
