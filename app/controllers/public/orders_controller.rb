@@ -42,7 +42,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     # address_numberの値が"1"のとき
     if params[:order][:address_number] == "1"
-      @order.postal_code = current_customer.postal_code
+      @order.postal_code = current_customer.postcode
       @order.address = current_customer.address
       # @order.name = current_customer.last_name + current_customer.first_name
     # address_numberの値が"2"のとき
