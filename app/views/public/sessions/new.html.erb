@@ -1,5 +1,7 @@
+<div class="container">
+<h2>ログイン</h2>
 <section class="inner">
-  <h2>ログイン</h2>
+  
   <% if flash[:danger] %>
     <p><%= flash[:danger] %></p>
   <% end %>
@@ -29,3 +31,5 @@
   <h2>登録がお済みでない方</h2>
   <p><%= link_to "こちら", new_customer_registration_path, class: "underline" %>から新規登録を行なってください。</p>
 </section>
+
+</div>
