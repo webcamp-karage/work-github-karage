@@ -5,13 +5,13 @@ class Public::ItemsController < ApplicationController
     else
       @items =Item.all
     end
-    
+
     if (params[:genre_name]).present?
       @itme_name = params[:garame_name]
     else
       @itme_name = "商品"
     end
-  
+
   @genres = Genre.all
   end
 
