@@ -16,8 +16,8 @@ Rails.application.routes.draw do
   namespace :public do
     resources :homes
     resources:items ,only: [:index, :show]
+    delete 'cart_items/all_destroy' => 'cart_items#all_destroy', as: "all_destroy_cart_itmes"
     resources:cart_items ,only: [:index, :update, :create, :destroy]
-    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     get 'customers/my_page' => 'customers#show', as: "customer"
     get 'customers/information/edit' => 'customers#edit', as: "customers_edit"
     patch 'customers/information' => 'customers#update'

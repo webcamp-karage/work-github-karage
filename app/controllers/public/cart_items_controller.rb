@@ -39,7 +39,7 @@ before_action :authenticate_customer!
   end
 
 
-  def destroy_all
+  def all_destroy
     @cart_items = current_customer.cart_items.all
     @cart_items.destroy_all
     redirect_to public_cart_items_path
