@@ -8,7 +8,7 @@
   <div class="col-md-10">
     <h3><%= @item_name %>商品一覧<span>(全<%= @items.count %>件)</span></h3>
     <div class='row'>
-      <% @items.each do |itme| %>
+      <% @items.each do |item| %>
       <div class="col-md-3">
             
               <%= link_to public_item_path(item) do %>
