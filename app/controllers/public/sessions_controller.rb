@@ -24,15 +24,26 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
-  def find_deleted_customer
+
+  def after_sign_in_path_for(resource)
+    public_customer__path
+  end
+
+  def after_sign_out_path_for(resource)
+    root_path
+  end
+  
+  
+  
+  def reject_inactive_customer
     @customer = Customer.find_by(email: params[:customer][:email])
-    if @customer
-      if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == true)
-        flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
-        redirect_to new_customer_registration_path
-      else
-        flash[:notice] = "項目を入力してください"
-      end
+    
+    return if !@customer
+    if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == true)
+        flash[:danger] = 'お客様は退会済みです。申し訳ございませんが、別のメールアドレスをお使いください。'
+        redirect_to new_customer_session_path
+    else
+        flash[:danger] = '項目を入力してください'
     end
   end
 end
