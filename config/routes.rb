@@ -6,7 +6,7 @@ Rails.application.routes.draw do
  namespace :admin do
    resources :homes
    resources :items
-   resources:genres
+   resources:genres, only: [:index,:create,:edit, :update]
    resources:customers
    resources:orders
    resources:order_details
