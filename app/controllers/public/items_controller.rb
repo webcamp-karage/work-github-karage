@@ -1,7 +1,7 @@
 class Public::ItemsController < ApplicationController
   def index
     if (params[:genre_id]).present?
-      @items =Itme.where(genre_id: params[:genre_id])
+      @items =Item.where(genre_id: params[:genre_id])
     else
       @items =Item.all
     end
