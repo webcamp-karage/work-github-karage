@@ -24,8 +24,13 @@
                   <tr>
                     <td>
                       <%= link_to public_item_path(cart.item_id) do %>
-                        <%= image_tag cart.item.image, size:'80x80' %></th>
+                      <% if cart.item.image.attached? %>
+                        <%= image_tag cart.item.image, size:'80x80' %>
+                        <% else %>
+                        <%= image_tag 'no_image.jpeg', size:"80x80" %>
                       <% end %>
+                      <% end %>
+
                     </td>
                     <td><%= cart.item.name %></td>
                     <td><%= (cart.item.with_tax_price).to_s(:delimited) %></td>
@@ -73,7 +78,7 @@
             <%= f.hidden_field :address %>
             <%= f.hidden_field :name %>
             <%= f.hidden_field :payment_method %>
-            <%= f.hidden_field :quantity %>
+            <%= f.hidden_field :amount %>
             <%= f.hidden_field :total_payment, value: @total + @order.shipping_cost %>
             <%= f.hidden_field :status, value: "payment_waiting" %>
             <%= f.submit "注文を確定する", class: "form-button" %>
