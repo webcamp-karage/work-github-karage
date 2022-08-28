@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row">
+    <div class="mainContents col-sm-12 col-sm-push-4 col-md-12 col-md-push-4">
+      <div class="row">
+      </div>
+
+      <h4 class="subtitle mx-auto">ご注文内容確認</h4>
+      <div class="container contens">
+        <p>下記の内容をご確認のうえ、「注文を確定する」ボタンを押してください。</p>
+        <div class="row">
+          <div class="col-md-8">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="col-1">商品名</th>
+                  <th class="col-3"></th>
+                  <th class="col-1">単価(税込)</th>
+                  <th class="col-1">数量</th>
+                  <th class="col-1">小計</th>
+                </tr>
+              </thead>
+              <% @cart_items.each do |cart| %>
+                <tbody>
+                  <tr>
+                    <td>
+                      <%= link_to public_item_path(cart.item_id) do %>
+                      <% if cart.item.image.attached? %>
+                        <%= image_tag cart.item.image, size:'80x80' %>
+                        <% else %>
+                        <%= image_tag 'no_image.jpeg', size:"80x80" %>
+                      <% end %>
+                      <% end %>
+
+                    </td>
+                    <td><%= cart.item.name %></td>
+                    <td><%= (cart.item.with_tax_price).to_s(:delimited) %></td>
+                    <td><%= cart.amount %></td>
+                    <td><%= (cart.item.with_tax_price*cart.amount).to_s(:delimited) %></td>
+                  </tr>
+                </tbody>
+              <% end %>
+            </table>
+          </div>
+
+          <div class="col-md-4">
+            <table class="table">
+              <thead class="thead-light">
+                <tr>
+                  <th class="col-1">送料</th>
+                  <th class="col-1">商品合計</th>
+                  <th class="col-1">請求金額</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= @order.shipping_cost %></td>
+                  <td><%= @total.to_s(:delimited) %></td>
+                  <td><%= (@total + @order.shipping_cost).to_s(:delimited) %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="paymentmethod">
+          <div class="d-inline p-2 bg-secondary text-white">支払方法</div>
+          &emsp;<%= @order.payment_method_i18n %>
+        </div>
+        <div class="shippingaddress">
+          <div class="d-inline p-2 bg-secondary text-white">お届け先</div>
+          &emsp;〒<%= @order.postal_code %>
+          &emsp;<%= @order.address %>
+          &emsp;<%= @order.name %>
+        </div>
+        <div class= "orderconfirmation text-center">
+          <%= form_with model: @order, url: public_orders_path, method: :post, local: true do |f| %>
+            <%= f.hidden_field :postal_code %>
+            <%= f.hidden_field :address %>
+            <%= f.hidden_field :name %>
+            <%= f.hidden_field :payment_method %>
+            <%= f.hidden_field :total_payment, value: @total + @order.shipping_cost %>
+            <%= f.submit "注文を確定する", class: "form-button" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

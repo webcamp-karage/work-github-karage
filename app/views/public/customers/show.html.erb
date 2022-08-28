@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col m-10">
+        <p id="notice"></p>
+          <h3><strong>マイページ</strong></h3>
+              <table class="table table-bordered table-condensed">
+                    <p>
+                        <strong class="information-link">登録情報</strong>　　　<%= link_to public_customers_edit_path(current_customer) do %><button type="button" class="btn btn-outline-info">編集する</button><% end %>
+                    </p>
+                        <tr>
+                            <td>氏名</td>
+                            <td><%= @customer.first_name %><%= @customer.last_name %></td>
+                        </tr>
+                        <tr>
+                            <td>カナ</td>
+                            <td><%= @customer.first_name_kana %><%= @customer.last_name_kana %></td>
+                        </tr>
+                        <tr>
+                            <td>郵便番号</td>
+                            <td><%= @customer.postcode %></td>
+                        </tr>
+                        <tr>
+                            <td>住所</td>
+                            <td><%= @customer.address %></td>
+                        </tr>
+                        <tr>
+                            <td>電話番号</td>
+                            <td><%= @customer.telephone_number %></td>
+                        </tr>
+                        <tr>
+                            <td>メールアドレス</td>
+                            <td><%= @customer.email %></td>
+                        </tr>
+                </table>
+                <strong class="information-link">配送先　　　</strong>
+
+                    <%= link_to public_addresses_path(current_customer) do %>
+
+                    <button type="button" class="btn btn-outline-dark">一覧を見る</button>
+
+                    <% end %><br><br>
+
+                    <strong class="information-link">注文履歴　　</strong>
+
+                    <%= link_to public_orders_path(current_customer) do %>
+
+                    <button type="button" class="btn btn-outline-dark">一覧を見る</button>
+
+                    <% end %>
+    </div>
+  </div>
+</div>
