@@ -34,7 +34,7 @@
               <%= f.radio_button :address_number, 2 ,required: true%>
               <%= f.label :address_number_2, "登録済住所から選択" %>
             </div>
-            &emsp; <%= f.select :address_id, options_from_collection_for_select(@addresses.all, :id, :full_address) %>
+            &emsp; <%= f.select :address_id, options_from_collection_for_select(@addresses.all, :id, :ful_address) %>
           </div>
 
           <div class="address-list">
