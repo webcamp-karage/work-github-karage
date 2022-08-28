@@ -7,13 +7,13 @@
   <div class="col-md-10">
       <div class="item-info row">
         <div class="col-xl-6">
-          
+
             <% if @item.image.attached? %>
               <%= image_tag @item.image, size: "400x300" %>
             <% else %>
               <%= image_tag 'no_image', size: "400x300" %>
             <% end %>
-          
+
         </div>
         <div class="col-xl-6">
           <h3><br>
