@@ -43,7 +43,7 @@
                 <tr>
                   <td><%= @total.to_s(:delimited) %></td>
                   <td><%= @order.shipping_cost %>円</td>
-                  <td><%= @order.price.to_s(:delimited) %>円</td>
+                  <td><%= @order.total_payment.to_s(:delimited) %>円</td>
                 </tr>
               </tbody>
             </table>
