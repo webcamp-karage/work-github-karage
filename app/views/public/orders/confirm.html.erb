@@ -78,9 +78,7 @@
             <%= f.hidden_field :address %>
             <%= f.hidden_field :name %>
             <%= f.hidden_field :payment_method %>
-            <%= f.hidden_field :amount %>
             <%= f.hidden_field :total_payment, value: @total + @order.shipping_cost %>
-            <%= f.hidden_field :status, value: "payment_waiting" %>
             <%= f.submit "注文を確定する", class: "form-button" %>
           <% end %>
         </div>
