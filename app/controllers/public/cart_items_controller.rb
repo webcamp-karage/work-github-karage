@@ -3,7 +3,7 @@ before_action :authenticate_customer!
 
   def index
     @cart_item = current_customer.cart_items.all
-    @total_price = @cart_item.inject(0) { |sum,item| sum + item.subtotal }
+    @total_price = @cart_item.inject(0) { |sum,item| sum + item }
   end
 
   def create
@@ -12,7 +12,7 @@ before_action :authenticate_customer!
     if CartItem.find_by(item_id: @cart_item.item_id)
       @update_cart_item = CartItem.find_by(item_id: @cart_item.item_id)
       # 追加の数量をカートに入っている数量に足す
-      @cart_item.quantity += @update_cart_item.quantity
+      @cart_item.amount += @update_cart_item.amount
       @update_cart_item.destroy
     end
 
@@ -49,7 +49,7 @@ before_action :authenticate_customer!
   private
 
   def cart_item_params
-    params.require(:cart_item).permit(:item_id, :customer_id, :quantity)
+    params.require(:cart_item).permit(:item_id, :customer_id, :amount)
   end
 
 end
