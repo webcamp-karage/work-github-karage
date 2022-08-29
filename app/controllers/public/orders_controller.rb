@@ -69,7 +69,7 @@ class Public::OrdersController < ApplicationController
       @order_details.order_id = @order.id
       @order_details.item_id = cart_item.item.id
       @order_details.price = cart_item.item.with_tax_price
-      @order_details.amount = cart_item.quantity
+      @order_details.amount = cart_item.amount
       @order_details.making_status = 0
       @order_details.save
     end
@@ -96,8 +96,10 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:payment_method, :postcode, :address, :name, :shipping_cost, :status)
+    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :shipping_cost, :status, :total_payment )
   end
+
+
 
   # def order_details
   #   params.require(:order_details).permit(:order_id, :item_id, :price, :amount, :making_status)

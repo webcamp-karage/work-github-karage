@@ -4,7 +4,6 @@
           <p id="notice"></p>
           <%= render 'genre_index', genres: @genres %>
     </div>
-    
       <div class='col-md-10'>
         <div class="card" style="max-width: 500px;">
           <%= image_tag "top.jpg" %><!--<img class="card-img" image_tag src='../../../assets/images/top.jpg' alt=''>-->
@@ -19,10 +18,29 @@
           </div>
         </div>
         <h2><strong>新着商品</strong></h2>
+        <div class='row'>
+        <br>
+        <% @items.each do |item| %>
+          <div class='col-md-3'>
+            <div class="item-box">
+            <%= link_to public_item_path(item) do %>
+                              
+            <% if item.image.attached? %>
+            <%= image_tag item.image, size: "180x100" %>
+            <% else %>
+            <%= image_tag 'no_image.jpeg', size: "180x100" %>
+            <% end %>
+                              
+              <div class="item-name-price">
+                <div class="item-name text-center"><%= item.name %></div>
+                <div class="item-price text-center">¥<%= (item.price * 110 / 100).to_s(:delimited) %>(税込)
+              </div>
+              </div>
+            <% end %>
+            </div>
+          </div>
+        <% end %>
+        </div>
       </div>
-      
-      
-        
-      </div>
-    </div>
   </div>
+</div>
