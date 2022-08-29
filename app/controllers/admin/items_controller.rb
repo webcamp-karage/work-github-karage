@@ -34,8 +34,8 @@ class Admin::ItemsController < ApplicationController
       redirect_to admin_item_path(@item), notice: "無事に更新されました"
     else
     render "edit"
+    end
   end
-end
 
   private
   def item_params

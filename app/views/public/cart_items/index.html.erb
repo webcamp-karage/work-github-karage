@@ -22,7 +22,7 @@
               <td>
                 <%= form_with model: cart_item, url:public_cart_itme_path(cart_item) do |cart_item| %>
               <p>
-                <%= cart_item.number_fild :quantity, min:1, max:10000, step:1 %>
+                <%= cart_item.number_fild :amount, min:1, max:10000, step:1 %>
                 <%= cart_item.submit "変更", class: "btn btn-outline-primary" %>
               </p>
               <% end %>

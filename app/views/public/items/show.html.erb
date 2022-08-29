@@ -7,13 +7,13 @@
   <div class="col-md-10">
       <div class="item-info row">
         <div class="col-xl-6">
-          
+
             <% if @item.image.attached? %>
               <%= image_tag @item.image, size: "400x300" %>
             <% else %>
               <%= image_tag 'no_image', size: "400x300" %>
             <% end %>
-          
+
         </div>
         <div class="col-xl-6">
           <h3><br>
@@ -27,7 +27,7 @@
             <%= form_with model: @cart_item, url: public_cart_items_path do |f| %>
               <%= f.hidden_field :item_id, :value => @item.id %>
               <span id="item-count">個数</span>
-              <%= f.select :quantity, (1..50), class: "item-count-select" %>
+              <%= f.select :amount, (1..50), class: "item-count-select" %>
               <%= f.submit "カートに入れる", class: "btn btn-outline-primary" %>
             <% end %>
           </div>
