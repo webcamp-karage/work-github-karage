@@ -33,7 +33,11 @@ class Admin::ItemsController < ApplicationController
     if @item.update!(item_params)
       redirect_to admin_item_path(@item), notice: "無事に更新されました"
     else
+<<<<<<< HEAD
+    render "edit"
+=======
       render 'edit'
+>>>>>>> origin/develop
     end
   end
 
